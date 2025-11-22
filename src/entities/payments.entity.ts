@@ -52,7 +52,7 @@ export class PaymentsEntity {
     })
     updatedAt: Date;
 
-    @OneToOne(() => OrdersEntity, order => order.payment, { onDelete: 'CASCADE' })
+    @OneToOne(() => OrdersEntity, order => order.paymentId, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'order_uuid', referencedColumnName: 'uuid' })
-    order: OrdersEntity;
+    orderId: OrdersEntity;
 }

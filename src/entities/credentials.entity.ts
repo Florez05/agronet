@@ -54,5 +54,5 @@ export class CredentialsEntity {
 
     @OneToOne(() => UsersEntity, user => user.credential, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
-    user: UsersEntity;
+    userId: UsersEntity;
 }

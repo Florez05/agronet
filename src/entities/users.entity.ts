@@ -75,18 +75,19 @@ export class UsersEntity {
     @Column({
         type: 'timestamp with time zone',
         name: 'deleted_at',
+        nullable: true,
     })
-    deletedAt: Date;
+    deletedAt: Date | null;
 
-    @OneToOne(() => CredentialsEntity, credential => credential.user)
+    @OneToOne(() => CredentialsEntity, credential => credential.userId)
     credential: CredentialsEntity;
 
-    @OneToMany(() => OrdersEntity, order => order.user)
-    orders: OrdersEntity[];
+    @OneToMany(() => OrdersEntity, order => order.userId)
+    ordersIds: OrdersEntity[];
 
-    @OneToMany(() => ReviewsEntity, review => review.user)
-    reviews: ReviewsEntity[];
+    @OneToMany(() => ReviewsEntity, review => review.userId)
+    reviewsIds: ReviewsEntity[];
 
-    @OneToOne(() => OrderHistoryEntity, orderHistory => orderHistory.changedBy)
-    orderHistory: OrderHistoryEntity;
+    @OneToOne(() => OrderHistoryEntity, orderHistory => orderHistory.changedById)
+    orderHistoryId: OrderHistoryEntity;
 }

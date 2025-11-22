@@ -36,11 +36,11 @@ export class OrderHistoryEntity {
     })
     changedAt: Date;
 
-    @OneToOne(() => UsersEntity, user => user.orderHistory, { onDelete: 'SET NULL' })
+    @OneToOne(() => UsersEntity, user => user.orderHistoryId, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'changed_by', referencedColumnName: 'uuid' })
-    changedBy: UsersEntity;
+    changedById: UsersEntity;
 
-    @ManyToOne(() => OrdersEntity, { onDelete: 'CASCADE' })
+    @ManyToOne(() => OrdersEntity, order => order.orderHistoryIds, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'order_uuid', referencedColumnName: 'uuid' })
-    order: OrdersEntity;
+    orderId: OrdersEntity;
 }

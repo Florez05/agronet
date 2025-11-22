@@ -27,11 +27,11 @@ export class OrderDetailsEntity {
     })
     createdAt: Date;
 
-    @ManyToOne(() => OrdersEntity, order => order.orderDetails, { onDelete: 'SET NULL' })
+    @ManyToOne(() => OrdersEntity, order => order.orderDetailsIds, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'order_uuid', referencedColumnName: 'uuid' })
-    order: OrdersEntity;
+    orderId: OrdersEntity;
 
-    @ManyToOne(() => ProductsEntity, product => product.orderDetails, { onDelete: 'SET NULL' })
+    @ManyToOne(() => ProductsEntity, product => product.orderDetailsIds, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'product_uuid', referencedColumnName: 'uuid' })
-    product: ProductsEntity;
+    productId: ProductsEntity;
 }

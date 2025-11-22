@@ -44,19 +44,20 @@ export class OrdersEntity {
     @Column({
         type: 'timestamp with time zone',
         name: 'deleted_at',
+        nullable: true,
     })
-    deletedAt: Date;
+    deletedAt: Date | null;
 
-    @ManyToOne(() => UsersEntity, user => user.orders, { onDelete: 'SET NULL' })
+    @ManyToOne(() => UsersEntity, user => user.ordersIds, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
-    user: UsersEntity;
+    userId: UsersEntity;
 
-    @OneToMany(() => OrderHistoryEntity, orderHistory => orderHistory.order)
-    orderHistory: OrderHistoryEntity[];
+    @OneToMany(() => OrderHistoryEntity, orderHistory => orderHistory.orderId)
+    orderHistoryIds: OrderHistoryEntity[];
 
-    @OneToMany(() => OrderDetailsEntity, orderHistory => orderHistory.order)
-    orderDetails: OrderDetailsEntity[];
+    @OneToMany(() => OrderDetailsEntity, orderDetails => orderDetails.orderId)
+    orderDetailsIds: OrderDetailsEntity[];
 
-    @OneToOne(() => PaymentsEntity, payment => payment.order)
-    payment: PaymentsEntity;
+    @OneToOne(() => PaymentsEntity, payment => payment.orderId)
+    paymentId: PaymentsEntity;
 }

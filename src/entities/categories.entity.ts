@@ -29,7 +29,7 @@ export class CategoriesEntity {
     })
     updatedAt: Date;
 
-    @ManyToMany(() => ProductsEntity, product => product.categories)
+    @ManyToMany(() => ProductsEntity, product => product.categoriesIds)
     @JoinTable({
         name: 'categories_products',
         joinColumn: {
@@ -41,5 +41,5 @@ export class CategoriesEntity {
             referencedColumnName: 'uuid',
         },
     })
-    products: ProductsEntity[];
+    productsIds: ProductsEntity[];
 }

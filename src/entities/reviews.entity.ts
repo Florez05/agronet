@@ -32,11 +32,11 @@ export class ReviewsEntity {
     })
     updatedAt: Date;
 
-    @ManyToOne(() => UsersEntity, user => user.reviews, { onDelete: 'CASCADE' })
+    @ManyToOne(() => UsersEntity, user => user.reviewsIds, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
-    user: UsersEntity;
+    userId: UsersEntity;
 
-    @ManyToOne(() => ProductsEntity, product => product.reviews, { onDelete: 'CASCADE' })
+    @ManyToOne(() => ProductsEntity, product => product.reviewsIds, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'product_uuid', referencedColumnName: 'uuid' })
-    product: ProductsEntity;
+    productId: ProductsEntity;
 }

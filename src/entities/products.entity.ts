@@ -49,15 +49,16 @@ export class ProductsEntity {
     @Column({
         type: 'timestamp with time zone',
         name: 'deleted_at',
+        nullable: true,
     })
     deletedAt: Date;
 
-    @OneToMany(() => ReviewsEntity, review => review.product)
-    reviews: ReviewsEntity[];
+    @OneToMany(() => ReviewsEntity, review => review.productId)
+    reviewsIds: ReviewsEntity[];
 
-    @ManyToMany(() => CategoriesEntity, category => category.products)
-    categories: CategoriesEntity[];
+    @ManyToMany(() => CategoriesEntity, category => category.productsIds)
+    categoriesIds: CategoriesEntity[];
 
-    @OneToMany(() => OrderDetailsEntity, orderDetail => orderDetail.product)
-    orderDetails: OrderDetailsEntity[];
+    @OneToMany(() => OrderDetailsEntity, orderDetail => orderDetail.productId)
+    orderDetailsIds: OrderDetailsEntity[];
 }
