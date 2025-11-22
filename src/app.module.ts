@@ -1,6 +1,7 @@
 // Libraries
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { DataSourceOptions } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -19,7 +20,10 @@ import typeorm from './config/typeorm';
         }),
         TypeOrmModule.forRootAsync({
             inject: [ConfigService],
-            useFactory: (config: ConfigService) => config.get('typeorm') ?? {},
+            useFactory: (config: ConfigService) => {
+                const auxConfig: DataSourceOptions = config.get('typeorm')!;
+                return { ...auxConfig, entities: ['dist/**/*.entity.js'] };
+            },
         }),
         JwtModule.register({
             global: true,
