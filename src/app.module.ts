@@ -12,6 +12,9 @@ import { AppService } from './app.service';
 // Config
 import typeorm from './config/typeorm';
 
+// Modules
+import { CredentialsModule } from './modules/credentials';
+
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -30,6 +33,7 @@ import typeorm from './config/typeorm';
             secret: process.env.JWT_SECRET,
             signOptions: { expiresIn: '9h' },
         }),
+        CredentialsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
